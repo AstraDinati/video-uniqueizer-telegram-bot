@@ -17,7 +17,7 @@ bot = TelegramClient("bot", API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
 picture_path = "best_offer.png"
 
-current_state = 0
+user_states = {}
 
 
 START_MESSAGE = """
@@ -57,26 +57,36 @@ async def menu(event):
 
 @bot.on(events.NewMessage(pattern="(Изменить битрейт|Отзеркалить|Наложить картинку)"))
 async def set_state(event):
-    global current_state
+    global user_states
 
+    user_id = event.sender_id
     new_state = event.pattern_match.group(1)
+    
 
     if new_state == "Изменить битрейт":
         current_state = "change_bitrate"
+        user_states[user_id] = current_state
         await event.respond(CHANGE_BITRATE_MESSAGE)
 
     elif new_state == "Отзеркалить":
         current_state = "mirror_horizontal"
+        user_states[user_id] = current_state
         await event.respond(MIRROR_HORIZONTAL_MESSAGE)
 
     elif new_state == "Наложить картинку":
         current_state = "add_a_picture"
+        user_states[user_id] = current_state
         await event.respond(ADD_A_PICTURE_MESSAGE)
+
 
 
 @bot.on(events.NewMessage)
 async def handle_message(event):
-    global current_state
+    global user_states
+
+    user_id = event.sender_id
+
+    current_state = user_states.get(user_id)
 
     if (
         current_state == "change_bitrate"
