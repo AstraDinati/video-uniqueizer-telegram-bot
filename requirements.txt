@@ -1,0 +1,9 @@
+ffmpeg-python==0.2.0
+future==0.18.3
+numpy==1.26.0
+opencv-python-headless==4.8.0.76
+pyaes==1.6.1
+pyasn1==0.5.0
+python-decouple==3.8
+rsa==4.9
+Telethon==1.30.3
