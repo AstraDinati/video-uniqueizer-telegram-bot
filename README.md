@@ -7,7 +7,7 @@
 ##### Бот умеет:
 >
 > - Изменять битрейт видео
-> - Отзеркаливать изображение видео
+> - Отзеркаливать изображение видео по горизонтали
 > - Накладывать на видео .png изображение
 > - Удалять с видео метаданные
 
@@ -19,7 +19,7 @@
 
 - API development tools
 
-Из открывшегося окна нам потреюудется сохранить значения полей
+Из открывшегося окна нам потребуется сохранить значения полей
 
 - App api_id
 - App api_hash
@@ -28,35 +28,35 @@
 
 1. Клонируем репозиторий:
 
-    > ```git clone https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git```
+    ```git clone https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git```
 
 2. Переходим в директорию проекта:
 
-    > ```cd video-uniqueizer-telegram-bot```
+    ```cd video-uniqueizer-telegram-bot```
 
 3. Создаём виртуальное окружение (venv) для изоляции зависимостей.
 
     - Windows:
 
-        > ```python -m venv venv```
+        ```python -m venv venv```
 
     - Linux/macOS:
 
-        > ```python3 -m venv venv```
+        ```python3 -m venv venv```
 
 4. Активируем виртуальное окружение:
 
     - Windows:
 
-        > ```venv\Scripts\activate```
+        ```venv\Scripts\activate```
 
     - Linux/macOS:
 
-        > ```source venv/bin/activate```
+        ```source venv/bin/activate```
 
 5. Устанавливаем зависимости из файла requirements.txt:
 
-    > ```pip install -r requirements.txt```
+    ```pip install -r requirements.txt```
 
 6. Создаём в корневой дирректории проекта файл с названием .env и заполняем его следующим образом:
 
@@ -68,7 +68,7 @@ BOT_TOKEN=ваш BOT_TOKEN (который вы получали у BotFather)
 
 7. Запускаем наше приложение:
 
-    > ```python bot.py```
+    ```python bot.py```
 
 Готово теперь бот должен работать и корректно обрабатывать видео в зависимости от ваших команд. 
 
