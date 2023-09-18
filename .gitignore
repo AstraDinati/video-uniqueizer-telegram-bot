@@ -1,0 +1,18 @@
+# Virtual Environment
+venv/
+
+# Compiled Python files
+__pycache__/
+*.pyc
+
+# Temporary build files
+*.pyo
+*.pyd
+__pycache__/
+
+# Editor/IDE-specific files
+.idea/
+.vscode/
+
+# Ignore environment variables file
+.env
