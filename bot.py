@@ -61,7 +61,6 @@ async def set_state(event):
 
     user_id = event.sender_id
     new_state = event.pattern_match.group(1)
-    
 
     if new_state == "Изменить битрейт":
         current_state = "change_bitrate"
@@ -77,7 +76,6 @@ async def set_state(event):
         current_state = "add_a_picture"
         user_states[user_id] = current_state
         await event.respond(ADD_A_PICTURE_MESSAGE)
-
 
 
 @bot.on(events.NewMessage)
@@ -99,7 +97,7 @@ async def handle_message(event):
             and "video" in event.media.document.mime_type
         ):
             video = await event.client.download_media(event.media.document)
-            
+
             if current_state == "change_bitrate":
                 await change_bitrate(event, video)
             elif current_state == "mirror_horizontal":
@@ -109,7 +107,6 @@ async def handle_message(event):
 
 
 async def mirror_horizontal(event, video_path):
-    
     unique_filename = f"{str(uuid.uuid4())}.mp4"
     unique_video_path = os.path.join(unique_filename)
 
@@ -172,7 +169,6 @@ async def add_a_picture(event, video_path):
 
 
 async def change_bitrate(event, video_path):
-
     unique_filename = f"{str(uuid.uuid4())}.mp4"
     unique_video_path = os.path.join(unique_filename)
 
