@@ -16,3 +16,5 @@ __pycache__/
 
 # Ignore environment variables file
 .env
+
+bot.session
