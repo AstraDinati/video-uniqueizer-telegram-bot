@@ -16,3 +16,7 @@ __pycache__/
 
 # Ignore environment variables file
 .env
+
+bfg-1.14.0.jar
+
+bot.session
