@@ -30,23 +30,19 @@
 
 1. Клонируем репозиторий:
 
-    ```git clone https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git```
+    `git clone https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git`
 
 2. Переходим в директорию проекта:
 
-    ```cd video-uniqueizer-telegram-bot```
+    `cd video-uniqueizer-telegram-bot`
 
 3. Создаём виртуальное окружение (venv) для изоляции зависимостей.
 
-    - Linux/macOS:
-
-        ```python3 -m venv venv```
+    `python3 -m venv venv`
 
 4. Активируем виртуальное окружение:
 
-    - Linux/macOS:
-
-        ```source venv/bin/activate```
+    `source venv/bin/activate`
 
 5. Устанавливаем зависимости из файла requirements.txt:
 
