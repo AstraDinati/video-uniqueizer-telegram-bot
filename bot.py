@@ -107,96 +107,128 @@ async def handle_message(event):
 
 
 async def mirror_horizontal(event, video_path):
-    unique_filename = f"{str(uuid.uuid4())}.mp4"
-    unique_video_path = os.path.join(unique_filename)
+    try:
+        unique_filename = f"{str(uuid.uuid4())}.mp4"
+        unique_video_path = os.path.join(unique_filename)
 
-    ffmpeg_cmd = [
-        "ffmpeg",
-        "-i",
-        video_path,
-        "-vf",
-        "hflip",
-        "-map_metadata",
-        "-1",
-        "-c:a",
-        "copy",
-        unique_video_path,
-    ]
-    subprocess.call(ffmpeg_cmd)
+        cap = cv2.VideoCapture(video_path)
 
-    mime_type, _ = mimetypes.guess_type(unique_video_path)
+        ffmpeg_path = r"C:\ffmpeg\bin\ffmpeg.exe"
+        ffmpeg_cmd = [
+            ffmpeg_path,
+            "-i",
+            video_path,
+            "-vf",
+            "hflip",
+            "-map_metadata",
+            "-1",
+            "-c:a",
+            "copy",
+            unique_video_path,
+        ]
+        subprocess.call(ffmpeg_cmd)
 
-    await event.client.send_file(event.chat_id, unique_video_path, mime_type=mime_type)
+        mime_type, _ = mimetypes.guess_type(unique_video_path)
 
-    os.remove(video_path)
-    os.remove(unique_video_path)
+        await event.client.send_file(
+            event.chat_id, unique_video_path, mime_type=mime_type
+        )
+    finally:
+        # Release the video capture resources
+        cap.release()
+
+        # Remove the original and processed videos
+        os.remove(video_path)
+        os.remove(unique_video_path)
 
 
 async def add_a_picture(event, video_path):
     global picture_path
 
-    unique_filename = f"{str(uuid.uuid4())}.mp4"
-    unique_video_path = os.path.join(unique_filename)
+    try:
+        unique_filename = f"{str(uuid.uuid4())}.mp4"
+        unique_video_path = os.path.join(unique_filename)
 
-    ffmpeg_cmd = [
-        "ffmpeg",
-        "-i",
-        video_path,
-        "-i",
-        picture_path,
-        "-filter_complex",
-        f"[0:v][1:v]overlay=W-w-10:H-h-10[v]",
-        "-map",
-        "[v]",
-        "-map",
-        "0:a",
-        "-map_metadata",
-        "-1",
-        "-c:v",
-        "libx264",
-        "-c:a",
-        "copy",
-        unique_video_path,
-    ]
-    subprocess.call(ffmpeg_cmd)
+        cap = cv2.VideoCapture(video_path)
 
-    mime_type, _ = mimetypes.guess_type(unique_video_path)
+        ffmpeg_path = r"C:\ffmpeg\bin\ffmpeg.exe"
+        ffmpeg_cmd = [
+            ffmpeg_path,
+            "-i",
+            video_path,
+            "-i",
+            picture_path,
+            "-filter_complex",
+            f"[0:v][1:v]overlay=W-w-10:H-h-10[v]",
+            "-map",
+            "[v]",
+            "-map",
+            "0:a",
+            "-map_metadata",
+            "-1",
+            "-c:v",
+            "libx264",
+            "-c:a",
+            "copy",
+            unique_video_path,
+        ]
+        subprocess.call(ffmpeg_cmd)
 
-    await event.client.send_file(event.chat_id, unique_video_path, mime_type=mime_type)
+        mime_type, _ = mimetypes.guess_type(unique_video_path)
 
-    os.remove(video_path)
-    os.remove(unique_video_path)
+        await event.client.send_file(
+            event.chat_id, unique_video_path, mime_type=mime_type
+        )
+    finally:
+        # Release the video capture resources
+        cap.release()
+
+        # Remove the original and processed videos
+        os.remove(video_path)
+        os.remove(unique_video_path)
 
 
 async def change_bitrate(event, video_path):
-    unique_filename = f"{str(uuid.uuid4())}.mp4"
-    unique_video_path = os.path.join(unique_filename)
+    try:
+        unique_filename = f"{str(uuid.uuid4())}.mp4"
+        unique_video_path = os.path.join(unique_filename)
 
-    cap = cv2.VideoCapture(video_path)
-    duration = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) / int(cap.get(cv2.CAP_PROP_FPS))
-    file_size = os.path.getsize(video_path)
-    bitrate = (file_size * 8) / duration
+        cap = cv2.VideoCapture(video_path)
+        duration = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) / int(
+            cap.get(cv2.CAP_PROP_FPS)
+        )
+        file_size = os.path.getsize(video_path)
+        bitrate = (file_size * 8) / duration
 
-    target_bitrate = int(bitrate * 0.7)
+        target_bitrate = int(bitrate * 0.7)
 
-    ffmpeg_cmd = [
-        "ffmpeg",
-        "-i",
-        video_path,
-        "-b:v",
-        str(target_bitrate),
-        "-map_metadata",
-        "-1",
-        unique_video_path,
-    ]
-    subprocess.call(ffmpeg_cmd)
+        ffmpeg_path = r"C:\ffmpeg\bin\ffmpeg.exe"
 
-    mime_type, _ = mimetypes.guess_type(unique_video_path)
+        ffmpeg_cmd = [
+            ffmpeg_path,
+            "-i",
+            video_path,
+            "-b:v",
+            str(target_bitrate),
+            "-map_metadata",
+            "-1",
+            unique_video_path,
+        ]
+        subprocess.call(ffmpeg_cmd)
 
-    await event.client.send_file(event.chat_id, unique_video_path, mime_type=mime_type)
+        mime_type, _ = mimetypes.guess_type(unique_video_path)
 
-    os.remove(video_path)
-    os.remove(unique_video_path)
+        await event.client.send_file(
+            event.chat_id, unique_video_path, mime_type=mime_type
+        )
+    finally:
+        # Release the video capture resources
+        cap.release()
+
+        # Remove the original and processed videos
+        os.remove(video_path)
+        os.remove(unique_video_path)
+
 
 
 def main():
