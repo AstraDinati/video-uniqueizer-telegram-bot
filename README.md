@@ -32,7 +32,7 @@
 
 1. Клонируем репозиторий:
 
-    ```git clone https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git```
+    `git clone -b windows-version https://github.com/AstraDinati/video-uniqueizer-telegram-bot.git`
 
 2. Переходим в директорию проекта:
 
@@ -48,7 +48,7 @@
 
 5. Устанавливаем зависимости из файла requirements.txt:
 
-    ```pip install -r requirements.txt```
+    `pip install -r requirements.txt`
 
 6. Идём на официальный сайт [FFmpeg](https://ffmpeg.org/download.html#build-windows) в раздел Downloads, находим там раздел **Get packages & executable files**, выбираем Windows и скачиваем любой архив с посленим вышедшим билдом, (что-то вроде такого `ffmpeg-git-full.7z`). Распаковывем его куда захотим и переименовываем папку в **ffmpeg** нам понадобится путь до файла **ffmpeg.exe**, который находится в папке **bin**, я распаковывал этот архив прямо в корень диска **С**, так что, если не хотите менять код, то можете сделать так же.
 
@@ -62,7 +62,7 @@ BOT_TOKEN=ваш BOT_TOKEN (который вы получали у BotFather)
 
 8. Запускаем наше приложение:
 
-    ```python bot.py```
+    `python bot.py`
 
 Готово, теперь бот должен работать и корректно обрабатывать видео в зависимости от ваших команд. 
 
