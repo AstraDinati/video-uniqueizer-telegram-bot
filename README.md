@@ -46,7 +46,7 @@
 
     `source venv/Scripts/activate`
 
-5. Устанавливаем зависимости из файла requirements.txt для корректной установки зависимостей потребуется Python v3.11.5:
+5. Устанавливаем зависимости из файла requirements.txt (для корректной установки зависимостей потребуется **Python v3.11.5**):
 
     `pip install -r requirements.txt`
 
