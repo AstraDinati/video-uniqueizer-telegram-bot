@@ -44,9 +44,9 @@
 
 4. Активируем виртуальное окружение:
 
-    `venv\Scripts\activate`
+    `source venv/Scripts/activate`
 
-5. Устанавливаем зависимости из файла requirements.txt:
+5. Устанавливаем зависимости из файла requirements.txt для корректной установки зависимостей потребуется Python v3.11.5:
 
     `pip install -r requirements.txt`
 
